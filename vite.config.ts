@@ -1,7 +1,17 @@
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
+import { defineConfig } from "vite";
+import react from "@vitejs/plugin-react";
+import tsconfigPaths from 'vite-tsconfig-paths';
 
-// https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [react()],
-})
+  plugins: [
+    react(),
+    tsconfigPaths({
+      // 이 부분에 baseUrl과 paths를 작성합니다.
+      baseUrl: './',
+      paths: {
+        '@/*': ['src/*'],
+        '@components/*': ['src/components/*'],
+      },
+    }),
+  ],
+});
