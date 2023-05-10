@@ -58,7 +58,7 @@ const validateInput = (name: string, value: string) => {
   }
 }
 
-const setUserInfo = (e: React.ChangeEvent<HTMLInputElement>) => {
+const handleChangeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
   const { name, value } = e.target;
   serUserInfo({ ...userInfo, [name]: value });
 
@@ -81,13 +81,13 @@ const setUserInfo = (e: React.ChangeEvent<HTMLInputElement>) => {
     return (
         <div>
       <Title title='회원가입'/>
-         <input placeholder='아이디' name='userId' onChange={setUserInfo}/>
+         <input placeholder='아이디' name='userId' onChange={handleChangeInput}/>
          <p>{formErrors.userId}</p>
            < br/>
-         <input placeholder='비번' name='password' onChange={setUserInfo}/>
+         <input placeholder='비번' name='password' onChange={handleChangeInput}/>
              <p>{formErrors.password}</p>
           < br/>
-         <input placeholder='닉네임' name='nickname' onChange={setUserInfo}/>
+         <input placeholder='닉네임' name='nickname' onChange={handleChangeInput}/>
              <p>{formErrors.nickname}</p>
          <Button buttonText='회원가입' handleClickFunction={handleSubmit}/>
         </div>
