@@ -1,7 +1,7 @@
 import Title from '@components/common/Title';
 import Button from '@components/common/Button';
 import instance from '@/utils/axios';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from "react-router-dom";
 
 const SignIn = () => {
@@ -13,18 +13,34 @@ const SignIn = () => {
 
  const navigate = useNavigate();
 
+ useEffect(()=>{
+ const token = window.localStorage.getItem('token');
+  if(token){
+    navigate("/userlist");
+  }
+ },[])
+
 const handleChangeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
   const { name, value } = e.target;
   serUserInfo({ ...userInfo, [name]: value });
-
 
 };
 
     const handleSiginIn = async () =>{
        try {
+        console.log('실행');
        const res = await instance.post('/auth/signin',userInfo);
+
+       console.log(res)
+
        const token = res.accessToken
+       const refreshToekn = res.refreshToke
        localStorage.setItem('token', token);
+       localStorage.setItem('refreshToekn', refreshToekn);
+
+
+          navigate("/userlist");
+
          } catch (e) {
           console.log(e)
           throw e;
