@@ -29,14 +29,14 @@ instance.interceptors.response.use((response) => {
   if (error.response) {
     if (error.response.status === 401) {
       // 유효하지 않은 토큰 처리
-      window.location.href = '/login';
+      window.location.href = '/siginin';
     }
 
     if (error.response.status === 419) {
       //만료된 토큰 처리
       const refreshToekn = window.localStorage.getItem('refreshToekn');
       instance.post('/auth/refresh', refreshToekn)
-      window.location.href = '/login';
+      window.location.href = '/siginin';
     }
 
 
