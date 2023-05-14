@@ -71,6 +71,7 @@ const handleChangeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
    const handleSubmit = async () => {
       try {
        const res = await instance.post('/auth/signup', userInfo);
+       console.log('회원가입')
        console.log(res)
        } catch (e) {
          console.log(e)

@@ -35,7 +35,15 @@ instance.interceptors.response.use((response) => {
     if (error.response.status === 419) {
       //만료된 토큰 처리
       const refreshToekn = window.localStorage.getItem('refreshToekn');
-      instance.post('/auth/refresh', refreshToekn)
+      instance.post('/auth/refresh', refreshToekn).then((res)=>{
+        console.log(res)
+        if(res.status === 419 ){
+          console.log('419 Error')
+          const refreshToekn = res.refreshToke
+          localStorage.setItem('refreshToekn', refreshToekn);
+        }
+
+      })
       window.location.href = '/siginin';
     }
 

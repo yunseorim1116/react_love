@@ -1,7 +1,8 @@
 
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+
 import SignUp from '@/pages/SignUp';
 import MyPage from '@/pages/MyPage';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import MainPage from './pages/MainPage';
 import UserList from '@/pages/UserList';
 import SignIn from '@/pages/SignIn';
