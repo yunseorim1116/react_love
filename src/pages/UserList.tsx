@@ -1,6 +1,7 @@
 
 import { userType } from '@/type/userType';
 import instance from '@/utils/axios';
+import SwiperSlieder from '@components/common/SwiperSlieder';
 import { useEffect, useState } from 'react';
 
 const UserList = () => {
@@ -19,13 +20,8 @@ getUserList()
     },[])
 
     return (
-        <div>
-{
-    userDataList?.map((user : userType)=>{
-
-        return <div>닉네임 : {user.nickname}</div>
-    })
-}
+        <div style={{ width : '100vw'}}>
+            <SwiperSlieder cardList={userDataList?.slice(0,5)}/>
         </div>
     );
 };
