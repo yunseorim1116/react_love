@@ -1,16 +1,12 @@
-import React from 'react';
+import React from "react";
 
 interface IProps {
   buttonText: string;
-  handleClickFunction? : ()=> void
+  handleClickFunction?: () => void;
 }
 
-const Button = ({ buttonText, handleClickFunction } : IProps) => {
-    return (
-        <button onClick={handleClickFunction}>
-            { buttonText }
-        </button>
-    );
+const Button = ({ buttonText, handleClickFunction }: IProps) => {
+  return <button onClick={handleClickFunction}>{buttonText}</button>;
 };
 
 export default Button;

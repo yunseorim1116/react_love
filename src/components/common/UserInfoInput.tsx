@@ -1,11 +1,7 @@
-import React from 'react';
+import React from "react";
 
 const UserInfoInput = () => {
-    return (
-        <input/>
-
-
-    );
+  return <input />;
 };
 
 export default UserInfoInput;
