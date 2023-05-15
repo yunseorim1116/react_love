@@ -3,7 +3,7 @@ import axios from 'axios'
 
 const instance = axios.create({
     baseURL: 'http://52.79.226.246',
-    timeout: 1000
+    timeout: 4000
   });
 
 
@@ -29,7 +29,8 @@ instance.interceptors.response.use((response) => {
   if (error.response) {
     if (error.response.status === 401) {
       // 유효하지 않은 토큰 처리
-      window.location.href = '/siginin';
+      console.log('test 401 ')
+      // window.location.href = '/';
     }
 
     if (error.response.status === 419) {
@@ -44,7 +45,7 @@ instance.interceptors.response.use((response) => {
         }
 
       })
-      window.location.href = '/siginin';
+      // window.location.href = '/';
     }
 
 
