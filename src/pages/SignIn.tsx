@@ -34,12 +34,15 @@ const handleChangeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
        console.log(res)
 
        const token = res.accessToken
-       const refreshToekn = res.refreshToke
+       const refreshToekn = res.refreshToken
+
+
        localStorage.setItem('token', token);
-       localStorage.setItem('refreshToekn', refreshToekn);
+       localStorage.setItem('refreshToken', refreshToekn);
 
 
-          navigate("/userlist");
+
+       navigate("/userlist");
 
          } catch (e) {
           console.log(e)
