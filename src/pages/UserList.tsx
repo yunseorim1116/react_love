@@ -3,16 +3,25 @@ import { userType } from '@/type/userType';
 import instance from '@/utils/axios';
 import SwiperSlieder from '@components/common/SwiperSlieder';
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const UserList = () => {
 
-const [userDataList, setUserData] = useState<userType[]>()
-
+const [userDataList, setUserData] = useState<userType[] | []>()
+ const navigate = useNavigate();
     useEffect(() => {
+
        const getUserList = async ()=> {
-       const res = await instance.get('/member/list');
+        try{
+      const res = await instance.get('/member/list');
        console.log(res)
        setUserData([...res])
+        } catch(e) {
+            console.log(e)
+            setUserData([])
+           navigate("/");
+        }
+
      }
 
 getUserList()
