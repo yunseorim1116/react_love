@@ -16,6 +16,8 @@ const UserList = () => {
       } catch (e) {
         console.log(e);
         setUserData([]);
+        localStorage.removeItem("token");
+        alert("로그인 정보 만료!");
         navigate("/");
       }
     };
