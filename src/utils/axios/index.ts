@@ -36,12 +36,20 @@ instance.interceptors.response.use((response) => {
     if (error.response.status === 419) {
       //만료된 토큰 처리
       const refreshToekn = window.localStorage.getItem('refreshToekn');
-      instance.post('/auth/refresh', refreshToekn).then((res)=>{
+
+      axios.post('http://52.79.226.246/auth/refresh', refreshToekn).then((res)=>{
         console.log(res)
+
+         if(res.status ===  200){
+           const token = res.accessToken;
+           localStorage.setItem('toekn', token);
+        }
+
+
         if(res.status === 419 ){
           console.log('419 Error')
-          const refreshToekn = res.refreshToke
-          localStorage.setItem('refreshToekn', refreshToekn);
+          localStorage.removeItem("token");
+          localStorage.removeItem("refreshToken");
         }
 
       })
