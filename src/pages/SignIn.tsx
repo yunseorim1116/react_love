@@ -12,13 +12,6 @@ const SignIn = () => {
 
   const navigate = useNavigate();
 
-  useEffect(() => {
-    const token = window.localStorage.getItem("token");
-    if (token) {
-      navigate("/userlist");
-    }
-  }, []);
-
   const handleChangeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     serUserInfo({ ...userInfo, [name]: value });

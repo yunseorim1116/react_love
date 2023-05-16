@@ -29,31 +29,31 @@ instance.interceptors.response.use((response) => {
   if (error.response) {
     if (error.response.status === 401) {
       // 유효하지 않은 토큰 처리
-      console.log('test 401 ')
-      // window.location.href = '/';
+       console.log('test 401 ')
+       localStorage.removeItem("token");
+       localStorage.removeItem("refreshToken");
+       window.location.href = '/';
     }
 
     if (error.response.status === 419) {
       //만료된 토큰 처리
-      const refreshToekn = window.localStorage.getItem('refreshToekn');
+        const refreshToekn = window.localStorage.getItem('refreshToekn');
 
-      axios.post('http://52.79.226.246/auth/refresh', refreshToekn).then((res)=>{
-        console.log(res)
+         axios.post('http://52.79.226.246/auth/refresh', refreshToekn).then((res)=>{
+         console.log(res)
 
          if(res.status ===  200){
            const token = res.accessToken;
            localStorage.setItem('toekn', token);
-        }
-
-
-        if(res.status === 419 ){
+          }else {
           console.log('419 Error')
           localStorage.removeItem("token");
           localStorage.removeItem("refreshToken");
-        }
+          window.location.href = '/';
+      }
 
       })
-      // window.location.href = '/';
+
     }
 
 
