@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef, useState } from "react";
 import styled from "styled-components";
 
 const Modal = styled.div({
@@ -27,9 +27,42 @@ const ModalBody = styled.div({
 });
 
 const ProfileModal = ({ closeModal }) => {
+  const inputRef = useRef<HTMLInputElement | null>(null);
+  const [img, setImg] = useState("");
+
+  const handleUploadFile = () => {
+    inputRef.current.click();
+  };
+
+  const handleUploadImg = (e) => {
+    const formData = new FormData();
+    const fileImg = e.target.files[0];
+    const reader = new FileReader();
+
+    reader.onload = (e) => {
+      console.log(reader.result);
+      const url = reader.result as string;
+      setImg(url);
+    };
+
+    reader.readAsDataURL(fileImg);
+
+    formData.append("image", fileImg);
+  };
   return (
     <Modal onClick={closeModal}>
-      <ModalBody onClick={(e) => e.stopPropagation()}>모달뀽</ModalBody>
+      <ModalBody onClick={(e) => e.stopPropagation()}>
+        모달
+        <img src={img}></img>
+        <input
+          type="file"
+          id="fileUpload"
+          style={{ display: "none" }}
+          onChange={handleUploadImg}
+          ref={inputRef}
+        />
+        <div onClick={handleUploadFile}>파일 업로드 할래여</div>
+      </ModalBody>
     </Modal>
   );
 };
