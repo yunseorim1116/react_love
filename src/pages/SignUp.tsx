@@ -2,6 +2,7 @@ import Title from "@components/common/Title";
 import Button from "@components/common/Button";
 import instance from "@/utils/axios";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const SignUp = () => {
   const [userInfo, serUserInfo] = useState({
@@ -19,6 +20,8 @@ const SignUp = () => {
   const userIdPattern = /^[a-zA-Z0-9]{3,10}$/; // userId: 3~10 글자, 영어 또는 숫자만 가능
   const nicknamePattern = /^[a-zA-Z0-9가-힣]{3,10}$/; // nickname: 3~10 글자, 영어, 숫자, 한글만 가능
   const passwordPattern = /^.{3,10}$/; // password: 3~10 글자
+
+  const navigate = useNavigate();
 
   const validateUserId = (userId: string): string => {
     if (!userIdPattern.test(userId)) {
@@ -66,6 +69,7 @@ const SignUp = () => {
     try {
       const res = await instance.post("/auth/signup", userInfo);
       console.log("회원가입");
+      navigate("/");
       console.log(res);
     } catch (e) {
       console.log(e);
